@@ -82,7 +82,7 @@ def get_command(format_out, file_convert):
 
 class BFExtend(models.AbstractModel):
     _name = 'bf.extend'
-    _description = 'BF exttend description'
+    _description = 'Leap AI DOCX merge extension'
 
     template_docx_id = fields.Many2one("ir.attachment", "Template *.docx", domain=[('type', '=', 'binary')])
     template_output_extension = fields.Selection(

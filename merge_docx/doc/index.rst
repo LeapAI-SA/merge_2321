@@ -20,5 +20,5 @@ Supported output format combinations (Template -> Output):
 
 Note
 ----
-Fully Supports Odoo Version 16.0 Community
+Maintained for Odoo 17.0 Community (Leap AI).
 

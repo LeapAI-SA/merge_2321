@@ -31,7 +31,7 @@
     </record>
 
     <record id="bf_act_report_xml_view_tree" model="ir.ui.view">
-        <field name="name">ir.actions.report.buildfish</field>
+        <field name="name">ir.actions.report.leapai</field>
         <field name="model">ir.actions.report</field>
         <field name="inherit_id" ref="base.act_report_xml_view_tree"/>
         <field name="arch" type="xml">
@@ -42,10 +42,10 @@
     </record>
 
     <record model="ir.ui.view" id="act_report_xml_kanban_view">
-        <field name="name">Report BF Kanban</field>
+        <field name="name">Report Leap AI Kanban</field>
         <field name="model">ir.actions.report</field>
         <field name="arch" type="xml">
-            <kanban class="o_bf_theme_kanban" string="Reports BF">
+            <kanban class="o_leapai_theme_kanban" string="Leap AI Reports">
                 <field name="name"/>
                 <field name="binding_model_id"/>
                 <field name="report_type"/>
@@ -61,7 +61,7 @@
                                 <div class="bg-gray-ligher o_theme_cover" t-attf-style="background-image: url(#{record.url_theme_screenshot.value});"/>
                             </t>
                             <t t-if="!record.url_theme_screenshot.value">
-                                <div class="bg-gray-ligher o_theme_cover" t-attf-style="background-image: url(#{'report_extend_bf/static/src/img/not_screenshot.png'});"/>
+                                <div class="bg-gray-ligher o_theme_cover" t-attf-style="background-image: url(#{'merge_docx/static/src/img/not_screenshot.png'});"/>
                             </t>
                             <div class="o_button_area">
                                 <button name="create_action" type="object" attrs="{'invisible':[('binding_model_id','!=',False)]}" class="btn btn-primary">Use this theme</button>

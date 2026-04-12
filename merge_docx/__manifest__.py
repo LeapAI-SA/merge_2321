@@ -8,9 +8,9 @@
                    ' files docx, pdf',
     'category': 'All',
     'version': '17.0.1.0.0',
-    'website': 'http://www.build-fish.com/',
+    'website': 'https://github.com/LeapAI-SA',
     "license": "OPL-1",
-    'author': 'BuildFish',
+    'author': 'Leap AI',
     'depends': [
         'base', 'web'
     ],
