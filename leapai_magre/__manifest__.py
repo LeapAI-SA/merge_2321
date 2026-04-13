@@ -15,7 +15,6 @@
         'base', 'web'
     ],
     "external_dependencies": {
-        "python": ["pybase64"],
         "bin": ["unoconv"],
     },
     'data': [

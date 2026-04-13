@@ -3,7 +3,6 @@
 # For copyright and license notices, see __manifest__.py file in root directory
 ##############################################################################
 from base64 import standard_b64decode
-import pybase64
 from PyPDF2 import PdfFileWriter, PdfFileReader
 import tempfile
 import io
@@ -100,7 +99,7 @@ class BFExtend(models.AbstractModel):
         # with_context(lang=lang).bf_render(params)
         if not tmpl_docx:
             return None, None
-        in_stream = io.BytesIO(pybase64.standard_b64decode(tmpl_docx))
+        in_stream = io.BytesIO(standard_b64decode(tmpl_docx))
         document = MailMerge(in_stream)
         fields_template = document.get_merge_fields()
         data = self.docx_values(record, fields_template)
@@ -396,7 +395,7 @@ class IrActionsReport(models.Model):
         if not report_sudo.template_id:
             raise ValidationError('Report file template not found.')
 
-        in_stream = io.BytesIO(pybase64.standard_b64decode(report_sudo.template_id.datas))
+        in_stream = io.BytesIO(standard_b64decode(report_sudo.template_id.datas))
         # Render tmpl easy
         # in_stream = odoo.modules.get_module_resource('merge_docx', 'templates', "Practical-Business-Python.docx")
         if not in_stream:
