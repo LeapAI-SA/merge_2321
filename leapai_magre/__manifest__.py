@@ -32,7 +32,7 @@
     'auto_install': False,
     'assets': {
         'web.assets_backend': [
-            'merge_docx/static/src/scss/theme_screenshot.scss',
+            'leapai_magre/static/src/scss/theme_screenshot.scss',
         ]
     }
 }

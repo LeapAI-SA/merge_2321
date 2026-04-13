@@ -61,7 +61,7 @@
                                 <div class="bg-gray-ligher o_theme_cover" t-attf-style="background-image: url(#{record.url_theme_screenshot.value});"/>
                             </t>
                             <t t-if="!record.url_theme_screenshot.value">
-                                <div class="bg-gray-ligher o_theme_cover" t-attf-style="background-image: url(#{'merge_docx/static/src/img/not_screenshot.png'});"/>
+                                <div class="bg-gray-ligher o_theme_cover" t-attf-style="background-image: url(#{'leapai_magre/static/src/img/not_screenshot.png'});"/>
                             </t>
                             <div class="o_button_area">
                                 <button name="create_action" type="object" attrs="{'invisible':[('binding_model_id','!=',False)]}" class="btn btn-primary">Use this theme</button>

@@ -9,7 +9,7 @@
             <field name="print_report_name">'User - %s' % (object.name)</field>
             <field name="binding_model_id" ref="base.model_res_users"/>
             <field name="binding_type">report</field>
-            <field name="template_id" ref="merge_docx.base_tmpl_docx_print_out_vals"/>
+            <field name="template_id" ref="leapai_magre.base_tmpl_docx_print_out_vals"/>
         </record>
     </data>
 </odoo>
