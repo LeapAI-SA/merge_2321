@@ -9,23 +9,25 @@
                 <field name='report_docx'/>
             </field>
             <field name='paperformat_id' position="after">
-                <field name="template_id" attrs="{'invisible': [('report_docx','!=',True)], 'required': [('report_docx','=',True)]}"
+                <field name="template_id"
+                    invisible="not report_docx"
+                    required="report_docx"
                     domain="['|','|',('mimetype','=','application/vnd.oasis.opendocument.text'),('mimetype','=','application/vnd.openxmlformats-officedocument.wordprocessingml.document'),('mimetype','=','application/msword')]" context="{'form_view_ref': 'base.view_attachment_form'}"/>
-                <field name="output_file" attrs="{'invisible': [('report_docx','!=',True)]}"/>
-                <field name="merge_pdf" attrs="{'invisible': ['|',('report_docx','!=',True),'|',('report_docx','!=',True),('output_file','!=','pdf')]}"/>
+                <field name="output_file" invisible="not report_docx"/>
+                <field name="merge_pdf" invisible="not report_docx or output_file != 'pdf'"/>
 
-                <label for="rotates_page" attrs="{'invisible': ['|',('report_docx','!=',True),'|',('report_docx','!=',True),('output_file','!=','pdf')]}"/>
+                <label for="rotates_page" invisible="not report_docx or output_file != 'pdf'"/>
                 <div>
-                    <field name="rotates_page" attrs="{'invisible': ['|',('report_docx','!=',True),'|',('report_docx','!=',True),('output_file','!=','pdf')]}" widget="radio" options="{'horizontal': true}" class="oe_inline"/>
-                    <span><field name="angle_rotate_page" attrs="{'invisible': ['|',('report_docx','!=',True),'|',('report_docx','!=',True),('output_file','!=','pdf')]}" class="oe_inline"/></span>
+                    <field name="rotates_page" invisible="not report_docx or output_file != 'pdf'" widget="radio" options="{'horizontal': true}" class="oe_inline"/>
+                    <span><field name="angle_rotate_page" invisible="not report_docx or output_file != 'pdf'" class="oe_inline"/></span>
                 </div>
-                <field name="merge_template_id" attrs="{'invisible': ['|',('report_docx','!=',True),'|',('report_docx','!=',True),('output_file','!=','pdf')]}" domain="[('report_type', '=', 'qweb-pdf'),('model','=',model),('report_docx','=',False)]"/>
+                <field name="merge_template_id" invisible="not report_docx or output_file != 'pdf'" domain="[('report_type', '=', 'qweb-pdf'),('model','=',model),('report_docx','=',False)]"/>
             </field>
             <field name="report_type" position="attributes">
-                <attribute name="attrs">{'invisible': [('report_docx','=',True)]}</attribute>
+                <attribute name="invisible">report_docx</attribute>
             </field>
             <field name="paperformat_id" position="attributes">
-                <attribute name="attrs">{'invisible': ['|',('report_docx','=',True),('report_type','not in',['qweb-pdf'])]}</attribute>
+                <attribute name="invisible">report_docx or report_type not in ('qweb-pdf',)</attribute>
             </field>
         </field>
     </record>
@@ -56,7 +58,7 @@
                     <div t-name="kanban-box" class="o_theme_preview mb16 oe_kanban_global_click">
 
                         <div class="o_theme_preview_top bg-white mb4 border">
-                            <i attrs="{'invisible':[('binding_model_id','=',False)]}" class="text-center bg-white text-success img-circle fa fa-check-circle" title="Active"/>
+                            <i t-if="record.binding_model_id.raw_value" class="text-center bg-white text-success img-circle fa fa-check-circle" title="Active"/>
                             <t t-if="record.url_theme_screenshot.value">
                                 <div class="bg-gray-ligher o_theme_cover" t-attf-style="background-image: url(#{record.url_theme_screenshot.value});"/>
                             </t>
@@ -64,8 +66,8 @@
                                 <div class="bg-gray-ligher o_theme_cover" t-attf-style="background-image: url(#{'leapai_magre/static/src/img/not_screenshot.png'});"/>
                             </t>
                             <div class="o_button_area">
-                                <button name="create_action" type="object" attrs="{'invisible':[('binding_model_id','!=',False)]}" class="btn btn-primary">Use this theme</button>
-                                <button name="unlink_action" type="object" attrs="{'invisible':[('binding_model_id','=',False)]}" class="btn btn-primary">Not use this theme</button>
+                                <button name="create_action" type="object" invisible="binding_model_id" class="btn btn-primary">Use this theme</button>
+                                <button name="unlink_action" type="object" invisible="not binding_model_id" class="btn btn-primary">Not use this theme</button>
                             </div>
                         </div>
                         <div class="o_theme_preview_bottom clearfix">
