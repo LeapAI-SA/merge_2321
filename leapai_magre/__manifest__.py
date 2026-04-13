@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 {
-    'name': 'Template Report DOCX',
+    'name': 'Report DOCX generted',
     'description': 'Is Easy an elegant and scalable solution to design reports'
                    'using Microsoft Office.',
     'summary': 'Export data all objects odoo to Microsoft Office output'
@@ -10,7 +10,7 @@
     'version': '17.0.1.0.0',
     'website': 'https://github.com/LeapAI-SA',
     "license": "OPL-1",
-    'author': 'Leap AI',
+    'author': 'Abdulkrim Osman',
     'depends': [
         'base', 'web'
     ],
