@@ -52,9 +52,11 @@ class ResPartner(models.Model):
         else:
             return '\t'.join(footer)
 
-    display_address = fields.Text(string='Display addres', compute="_compute_display_address")
-    display_address_without_company = fields.Text(string='Display addres', compute="_compute_display_address")
-    display_address_without_company_line = fields.Text(string='Display addres', compute="_compute_display_address")
+    display_address = fields.Text(string='Display Address (full)', compute="_compute_display_address")
+    display_address_without_company = fields.Text(
+        string='Display Address (without company)', compute="_compute_display_address")
+    display_address_without_company_line = fields.Text(
+        string='Display Address (without company, inline)', compute="_compute_display_address")
     vat_label = fields.Char(string='Vat label', compute="_compute_vat_label")
     vat_label_full = fields.Char(string='Vat label full', compute="_compute_vat_label")
     data_line = fields.Text(string='Data line', compute="_data_partner")

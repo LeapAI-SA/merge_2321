@@ -8,11 +8,13 @@ from odoo import models, fields
 class Company(models.Model):
     _inherit = 'res.company'
 
-    display_address = fields.Text(related='partner_id.display_address')
+    display_address = fields.Text(related='partner_id.display_address', string='Display Address (full)')
     display_address_without_company = fields.Text(
-        related='partner_id.display_address_without_company')
+        related='partner_id.display_address_without_company',
+        string='Display Address (without company)')
     display_address_without_company_line = fields.Text(
-        related='partner_id.display_address_without_company_line')
+        related='partner_id.display_address_without_company_line',
+        string='Display Address (without company, inline)')
     vat_label = fields.Char(related='partner_id.vat_label')
     vat_label_full = fields.Char(related='partner_id.vat_label_full')
     footer_line = fields.Text(related='partner_id.data_line')
