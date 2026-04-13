@@ -109,11 +109,11 @@
         <h4 class="oe_slogan" style="font-size: 23px;">Note</h4>
         <div style="font-weight:500; color:#091E42; border-radius:5px; background-color:#F0F4F7">
             <ul>
-                <li>Not insert image in report</li>
-                <li>In action merge not insert fields values in header & footer report</li>
-                <li>If the module is installed in a windows operating system, the output report will not convert into pdf</li>
-                <li>This module has been tested in Community Version</li>
-                <li>Does not work with if statement</li>
+                <li>Embedded images inside generated DOCX files may not render in some templates.</li>
+                <li>The merge action may not fill merge fields placed in document headers and footers.</li>
+                <li>PDF conversion depends on LibreOffice and unoconv; Windows environments may require extra setup.</li>
+                <li>This module is primarily tested on Odoo Community Edition.</li>
+                <li>Conditional IF logic inside DOCX merge fields is not supported.</li>
             </ul>
         </div>
     </div>
@@ -122,20 +122,20 @@
     <div class="oe_row">
         <h4 class="oe_slogan" style="font-size: 23px;">Help with Python expressions</h4>
         <div style="margin-top: 4px;">
-            <h3>Help with Python expressions</h3>
-            <p>Various fields may use Python code or Python expressions. The following variables can be used:</p>
+            <h3>Using Python expressions in templates</h3>
+            <p>You can use Python expressions in merge fields to transform values at runtime. The variables below are available in the evaluation context:</p>
             <ul>
-                <li><code>env</code>: Odoo Environment on which the action is triggered</li>
-                <li><code>o</code>: record on which the action is triggered; may be be void (o.* record extend Odoo for report template docx)</li>
-                <li><code>record</code>: record on which the action is triggered; may be be void</li>
-                <li><code>user</code>: Record user login</li>
-                <li><code>company_id</code>: Record company user login</li>
-                <li><code>time</code>, <code>datetime</code>, <code>dateutil</code>, <code>timezone</code>: useful Python libraries</li>
+                <li><code>env</code>: Odoo environment for ORM access.</li>
+                <li><code>o</code>: active business record used by the report.</li>
+                <li><code>record</code>: current record in evaluation scope.</li>
+                <li><code>user</code>: logged-in user record.</li>
+                <li><code>company_id</code>: current company record.</li>
+                <li><code>time</code>, <code>datetime</code>, <code>dateutil</code>, <code>timezone</code>: helper Python libraries.</li>
             </ul>
             <div attrs="{'invisible': [('state', '!=', 'code')]}">
-                <p>Example of Python code</p>
+                <p>Example expression:</p>
 <code style='white-space: pre-wrap'>
-record.name + '_code'
+record.name + '_generated'
 </code>
              </div>
         </div>
@@ -143,20 +143,21 @@ record.name + '_code'
 </section>
 <section class="oe_container">
     <div class="oe_row">
-        <h4 class="oe_slogan" style="font-size: 23px;">Widgets prefix bf_<b>field (Apply field type)</b></h4>
+        <h4 class="oe_slogan" style="font-size: 23px;">Widgets prefix bf_<b>field (apply by field type)</b></h4>
+        <p class="oe_slogan">Use the <code>bf_</code> prefix to apply built-in format helpers for specific field types.</p>
         <table class="table table-condensed">
             <thead>
                 <tr>
-                    <th class="text-center">Field type</th>
-                    <th class="text-center">bf_*</th>
-                    <th class="text-center">Out (Example)</th>
+                    <th class="text-center">Field Type</th>
+                    <th class="text-center">Expression</th>
+                    <th class="text-center">Output Example</th>
                 </tr>
            </thead>
            <tbody>
                 <tr>
                     <td>Many2many</td>
                     <td>o.partner_id.bf_category_id</td>
-                    <td>Services, Consulting Services</td>
+                    <td>Services, Consulting Services (comma-separated values)</td>
                 </tr>
             </tbody>
         </table>
@@ -166,18 +167,19 @@ record.name + '_code'
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
             <h4 class="oe_slogan" style="font-size: 23px;">References</h4>
+            <p class="oe_slogan">Additional resources for setup and usage.</p>
             <div class="row">
                 <div class="col-lg-6">
                     <ul>
                         <li>
-                            <b>Manual videos:</b> https://bit.ly/3KSWfbs
+                            <b>Video guide:</b> https://bit.ly/3KSWfbs
                         </li>
                     </ul>
                 </div>
                 <div class="col-lg-6">
                     <ul>
                         <li>
-                            <b>Documentation PDF:</b> https://bit.ly/33QVZsH
+                            <b>Documentation:</b> https://bit.ly/33QVZsH
                         </li>
                     </ul>
                 </div>
@@ -188,12 +190,13 @@ record.name + '_code'
 <section class="oe_container">
     <div class="oe_row">
         <h4 class="oe_slogan" style="font-size: 23px;">Global Values &amp; Icons</h4>
+        <p class="oe_slogan">These values can be used directly in DOCX template merge fields.</p>
         <table class="table table-condensed">
             <thead>
                 <tr>
-                    <th class="text-center">Attr</th>
+                    <th class="text-center">Variable</th>
                     <th class="text-center">Description</th>
-                    <th class="text-center">Out (Example)</th>
+                    <th class="text-center">Output Example</th>
                 </tr>
            </thead>
            <tbody>
@@ -204,17 +207,17 @@ record.name + '_code'
                 </tr>
                 <tr>
                     <td>user</td>
-                    <td>Record res.users</td>
+                    <td>Current <code>res.users</code> record</td>
                     <td>Defined by the user</td>
                 </tr>
                 <tr>
                     <td>company_id</td>
-                    <td>Record res.company</td>
+                    <td>Current <code>res.company</code> record</td>
                     <td>Defined by the user</td>
                 </tr>
                 <tr>
                     <td>lang</td>
-                    <td>Lang user login</td>
+                    <td>User language code</td>
                     <td>es</td>
                 </tr>
                 <tr>
@@ -229,12 +232,12 @@ record.name + '_code'
                 </tr>
                 <tr>
                     <td>company_vat_label</td>
-                    <td>Company vat label</td>
+                    <td>Company VAT label</td>
                     <td>TIN (Default TIN)</td>
                 </tr>
                 <tr>
                     <td>company_vat_label_full</td>
-                    <td>Concatenate Vat label + vat</td>
+                    <td>VAT label + VAT number</td>
                     <td>TIN: 32412423423</td>
                 </tr>
                 <tr>
@@ -257,13 +260,13 @@ record.name + '_code'
                 </tr>
                 <tr>
                     <td>company_footer_line</td>
-                    <td>Initials line dates &amp; separate per tab.</td>
+                    <td>Single-line footer with short prefixes</td>
                     <td>P. +966562984106    E. abdzoro89@gmil.com    W. http://www.example.com    TIN: 32412423423</td>
                 </tr>
 
                 <tr>
                     <td>company_footer_line_break</td>
-                    <td>Initials dates &amp; line break</td>
+                    <td>Footer with line breaks</td>
                     <td>
                         P. +966562984106<br>
                         E. abdzoro89@gmil.com<br>
@@ -273,12 +276,12 @@ record.name + '_code'
                 </tr>
                 <tr>
                     <td>company_footer_line_icon</td>
-                    <td>Line dates icons &amp; separate per tab</td>
+                    <td>Single-line footer with icons</td>
                     <td>&#128222; +966562984106    &#9993; abdzoro89@gmil.com    &#127760; http://www.example.com    TIN: 32412423423</td>
                 </tr>
                 <tr>
                     <td>company_footer_line_break_icon</td>
-                    <td>Icons dates &amp; line break</td>
+                    <td>Footer with icons and line breaks</td>
                     <td>
                         &#128222; +966562984106<br>
                         &#9993; abdzoro89@gmil.com<br>
@@ -370,20 +373,21 @@ record.name + '_code'
 <section class="oe_container">
     <div class="oe_row">
         <h4 class="oe_slogan" style="font-size: 23px;">Extra fields in res.partner</h4>
+        <p class="oe_slogan">Computed partner helper fields available for report templates.</p>
         <table class="table table-condensed">
             <thead>
                 <tr>
-                    <th class="text-center">Field name</th>
-                    <th class="text-center">Type field</th>
+                    <th class="text-center">Field Name</th>
+                    <th class="text-center">Type</th>
                     <th class="text-center">Description</th>
-                    <th class="text-center">Out example</th>
+                    <th class="text-center">Output Example</th>
                 </tr>
            </thead>
            <tbody>
                 <tr>
                     <td>display_address</td>
                     <td>Text</td>
-                    <td>Call function _display_address()</td>
+                    <td>Formatted address from <code>_display_address()</code></td>
                     <td>
                         China Export<br>
                         ChinaShanghai52 Chop Suey street 200000
@@ -392,13 +396,13 @@ record.name + '_code'
                 <tr>
                     <td>display_address_without_company</td>
                     <td>Text</td>
-                    <td>Without company</td>
+                    <td>Address without company name</td>
                     <td>ChinaShanghai52 Chop Suey street 200000</td>
                 </tr>
                 <tr>
                     <td>display_address_without_company_line</td>
                     <td>Text</td>
-                    <td>Without company inline separate per |</td>
+                    <td>Address without company in one line</td>
                     <td>ChinaShanghai52 Chop Suey street 200000</td>
                 </tr>
                 <tr>
@@ -410,19 +414,19 @@ record.name + '_code'
                 <tr>
                     <td>vat_label_full</td>
                     <td>Char</td>
-                    <td>Concatenate vat label + vat number</td>
+                    <td>VAT label plus VAT number</td>
                     <td>TIN: 32412423423</td>
                 </tr>
                 <tr>
                     <td>data_line</td>
                     <td>Text</td>
-                    <td>Line data initials</td>
+                    <td>Single-line contact info with prefixes</td>
                     <td>P. +966553368212 E. a.osman@bab.com.sa W. http://www.chinaexport.com/</td>
                 </tr>
                 <tr>
                     <td>data_line_break</td>
                     <td>Text</td>
-                    <td>Line break data initials</td>
+                    <td>Contact info split by line</td>
                     <td>
                         P. +966553368212<br>
                         E. a.osman@bab.com.sa<br>
@@ -432,13 +436,13 @@ record.name + '_code'
                 <tr>
                     <td>data_line_icon</td>
                     <td>Text</td>
-                    <td>Line data icons</td>
+                    <td>Single-line contact info with icons</td>
                     <td>&#128222; +966553368212 &#9993; a.osman@bab.com.sa &#127760; http://www.chinaexport.com/</td>
                 </tr>
                 <tr>
                     <td>data_line_break_icon</td>
                     <td>Text</td>
-                    <td>Line break data icons</td>
+                    <td>Contact info with icons and line breaks</td>
                     <td>
                         &#128222; +966553368212<br>
                         &#9993; a.osman@bab.com.sa<br>
@@ -448,13 +452,13 @@ record.name + '_code'
                 <tr>
                     <td>data_line_abbr</td>
                     <td>Text</td>
-                    <td>Line data abbreviation</td>
+                    <td>Single-line contact info with abbreviations</td>
                     <td>Tel: +966553368212 Mail: a.osman@bab.com.sa Web: http://www.chinaexport.com/</td>
                 </tr>
                 <tr>
                     <td>data_line_break_abbr</td>
                     <td>Text</td>
-                    <td>Line break data abbreviation</td>
+                    <td>Contact info with abbreviations and line breaks</td>
                     <td>
                         Tel: +966553368212<br>
                         Mail: a.osman@bab.com.sa<br>
@@ -469,20 +473,21 @@ record.name + '_code'
 <section class="oe_container">
     <div class="oe_row">
         <h4 class="oe_slogan" style="font-size: 23px;">Extra fields in res.company</h4>
+        <p class="oe_slogan">Computed company helper fields available for report templates.</p>
         <table class="table table-condensed">
             <thead>
                 <tr>
-                    <th class="text-center">Field name</th>
-                    <th class="text-center">Type field</th>
+                    <th class="text-center">Field Name</th>
+                    <th class="text-center">Type</th>
                     <th class="text-center">Description</th>
-                    <th class="text-center">Out example</th>
+                    <th class="text-center">Output Example</th>
                 </tr>
            </thead>
            <tbody>
                 <tr>
                     <td>display_address</td>
                     <td>Text</td>
-                    <td>Call function _display_address()</td>
+                    <td>Formatted address from <code>_display_address()</code></td>
                     <td>
                         China Export<br>
                         ChinaShanghai52 Chop Suey street 200000
@@ -491,13 +496,13 @@ record.name + '_code'
                 <tr>
                     <td>display_address_without_company</td>
                     <td>Text</td>
-                    <td>Without company</td>
+                    <td>Address without company name</td>
                     <td>ChinaShanghai52 Chop Suey street 200000</td>
                 </tr>
                 <tr>
                     <td>display_address_without_company_line</td>
                     <td>Text</td>
-                    <td>Without company inline separate per |</td>
+                    <td>Address without company in one line</td>
                     <td>ChinaShanghai52 Chop Suey street 200000</td>
                 </tr>
                 <tr>
@@ -509,19 +514,19 @@ record.name + '_code'
                 <tr>
                     <td>vat_label_full</td>
                     <td>Char</td>
-                    <td>Concatenate vat label + vat number</td>
+                    <td>VAT label plus VAT number</td>
                     <td>TIN: 32412423423</td>
                 </tr>
                 <tr>
                     <td>footer_line</td>
                     <td>Text</td>
-                    <td>Line data initials</td>
+                    <td>Single-line footer with prefixes</td>
                     <td>P. +966553368212 E. a.osman@bab.com.sa W. http://www.chinaexport.com/</td>
                 </tr>
                 <tr>
                     <td>footer_line_break</td>
                     <td>Text</td>
-                    <td>Line break data initials</td>
+                    <td>Footer split by line</td>
                     <td>
                         P. +966553368212<br>
                         E. a.osman@bab.com.sa<br>
@@ -531,13 +536,13 @@ record.name + '_code'
                 <tr>
                     <td>footer_line_icon</td>
                     <td>Text</td>
-                    <td>Line data icons</td>
+                    <td>Single-line footer with icons</td>
                     <td>&#128222; +966553368212 &#9993; a.osman@bab.com.sa &#127760; http://www.chinaexport.com/</td>
                 </tr>
                 <tr>
                     <td>footer_line_break_icon</td>
                     <td>Text</td>
-                    <td>Line break data icons</td>
+                    <td>Footer with icons and line breaks</td>
                     <td>
                         &#128222; +966553368212<br>
                         &#9993; a.osman@bab.com.sa<br>
@@ -547,13 +552,13 @@ record.name + '_code'
                 <tr>
                     <td>footer_line_abbr</td>
                     <td>Text</td>
-                    <td>Line data abbreviation</td>
+                    <td>Single-line footer with abbreviations</td>
                     <td>Tel: +966553368212 Mail: a.osman@bab.com.sa Web: http://www.chinaexport.com/</td>
                 </tr>
                 <tr>
                     <td>footer_line_break_abbr</td>
                     <td>Text</td>
-                    <td>Line break data abbreviation</td>
+                    <td>Footer with abbreviations and line breaks</td>
                     <td>
                         Tel: +966553368212<br>
                         Mail: a.osman@bab.com.sa<br>
