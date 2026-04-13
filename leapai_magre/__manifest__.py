@@ -9,7 +9,7 @@
     'category': 'All',
     'version': '17.0.1.0.0',
     'website': 'https://github.com/LeapAI-SA',
-    "license": "OPL-1",
+    "license": "LGPL-3",
     'author': 'Abdulkrim Osman',
     'depends': [
         'base', 'web'
@@ -24,8 +24,6 @@
         'views/report_view.xml'
     ],
     'live_test_url': 'https://youtu.be/919YFe4mtkc',
-    'price': 55.00,
-    'currency': 'EUR',
     'images': ['static/description/banner.png'],
     'installable': True,
     'application': True,
